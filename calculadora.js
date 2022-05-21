@@ -41,29 +41,106 @@ window.onload = function(){
 
     var valores = []
 
+    var teste = []
+
+    var teste2 = []
+
+    var expressao = []
+
+    var contador = 0
+
 
     function adc(){
-        var obj = event.target.dataset
+        var tecla = event.target.dataset
 
         var tela = document.getElementById("tela_valores")
 
-        if(obj.valor || obj.funcao === Number){
+        if(tecla.valor){
 
-            valores.push(obj.valor)
+                valores.push(tecla.valor)
 
-            tela.innerHTML = valores.join('')
+                var valoresTela = Number(valores.join(''))
 
-            var valoresJuntos = valores.join('')
+                tela.innerHTML += tecla.valor
 
-            console.log(Number(valoresJuntos))
+                console.log(valoresTela)
 
-            
+                teste.push(valores[0])
+
+                console.log(teste)
+
+                valores.pop()
 
         }
 
         else{
-            tela.innerHTML = obj.funcao
-            console.log(funcao)
+
+            var operador = tecla.funcao
+
+            expressao.push(operador)
+
+            tela.innerHTML += ' ' + operador + ' '
+
+            teste2.push(teste.join(''))
+
+            var tamanho1 = teste.length
+
+            console.log(operador)
+
+            console.log(expressao)
+
+            //console.log(teste)
+
+            console.log(teste2)
+
+            teste.splice(0, teste.length)
+
+            contador++
+
+            if(contador == 2){
+
+                contador = 0
+
+                if(expressao[0] == '+'){
+                    var soma = Number(teste2[0]) + Number(teste2[1])
+                    expressao.splice(0, expressao.length)
+
+                    tela.innerHTML += soma + '| '
+
+
+                }
+
+                else if(expressao[0] == '-'){
+                    var subtracao = Number(teste2[0]) - Number(teste2[1])
+                    expressao.splice(0, expressao.length)
+
+                    tela.innerHTML += subtracao + '| '
+
+                }
+
+                else if(expressao[0] == '*'){
+                    var multiplicacao = Number(teste2[0]) * Number(teste2[1])
+                    expressao.splice(0, expressao.length)
+
+                    tela.innerHTML += multiplicacao + '| '
+
+                }
+
+                else if(expressao[0] == '/'){
+                    var divisao = Number(teste2[0]) / Number(teste2[1])
+                    expressao.splice(0, expressao.length)
+
+                    tela.innerHTML += divisao + '| '
+                }
+
+                teste2.splice(0, teste2.length)
+
+            }
+
+            
+
+
+
 
 
 
